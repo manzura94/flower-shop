@@ -1,19 +1,8 @@
+import { Container } from '@/node_modules/@mui/material/index';
 import { Footer } from '@/src/components/Footer';
 import { Header } from '@/src/components/Header';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
 import './globals.css';
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -28,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)]`}
+        className={`antialiased flex flex-col items-center justify-items-center min-h-screen gap-16`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <div className={`max-w-[1200px] min-w-[360px] w-full mx-auto mt-3 mb-3 flex flex-col items-center`} >
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

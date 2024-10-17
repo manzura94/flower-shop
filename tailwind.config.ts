@@ -12,6 +12,15 @@ const config: Config = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
+      maxWidth: {
+        '1200': '75rem', 
+      },
+      minWidth: {
+        '360': '22.5rem', 
+      },
+      spacing: {
+        '3.5': '12px', 
+      },
     },
   },
   plugins: [],
