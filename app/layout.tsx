@@ -1,4 +1,3 @@
-import { Container } from '@/node_modules/@mui/material/index';
 import { Footer } from '@/src/components/Footer';
 import { Header } from '@/src/components/Header';
 import type { Metadata } from 'next';
@@ -17,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased flex flex-col items-center justify-items-center min-h-screen gap-16`}
+        className={'antialiased flex flex-col items-center justify-items-center min-h-screen gap-16'}
       >
-        <div className={`max-w-[1200px] min-w-[360px] w-full mx-auto mt-3 mb-3 flex flex-col items-center`} >
+        <div className={'max-w-[1200px] min-w-[360px] w-full mx-auto mt-3 mb-3 flex flex-col items-center'} >
           <Header />
           {children}
           <Footer />
