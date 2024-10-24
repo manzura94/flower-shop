@@ -3,9 +3,8 @@ import { Box, Button, Badge } from '@mui/material';
 import Image from '@/node_modules/next/image';
 import React, { useEffect, useState } from 'react';
 import logo from '@/public/icons/LogoWord.svg';
-import search from '@/public/icons/search-icon.svg';
+import searchImage from '@/public/icons/search-icon.svg';
 import burgerInside from '@/public/icons/burgerInside.svg';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CustomButton from './CustomButton';
 import LogoutIcon from './Icons/LogOut';
 import { useRouter } from 'next/navigation';
@@ -14,11 +13,14 @@ import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from './Icons/SearchIcon';
-
+import ShoppingCartIcon from './Icons/ShoppingCartIcon';
+import { Login } from './Login';
 
 export const Header = () => {
   const [activeButton, setActiveButton] = useState('Home');
   const [isMobile, setIsMobile] = useState(false);
+  const [search, setSearch] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const router = useRouter();
   const theme = useTheme();
@@ -59,31 +61,33 @@ export const Header = () => {
       }}
     >
       {isMobile ? (
-        <Box sx={{
-          width: '100%',
-          display: 'flex',
-          gap:'10px',
-          alignSelf: 'center'
-        }}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            gap: '10px',
+            alignSelf: 'center',
+          }}
+        >
           <Box sx={{ flex: '1', display: 'flex', justifyContent: 'center' }}>
             <TextField
               sx={{
                 width: '100%',
                 '& .MuiOutlinedInput-root': {
-                  borderRadius: '15px', 
+                  borderRadius: '15px',
                   height: '50px',
                   backgroundColor: '#F8F8F8',
                   '& fieldset': {
-                    borderColor: 'transparent', 
+                    borderColor: 'transparent',
                   },
                   '&:hover fieldset': {
-                    borderColor: 'transparent', 
+                    borderColor: 'transparent',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: 'transparent', 
+                    borderColor: 'transparent',
                   },
                   '& .MuiOutlinedInput-input': {
-                    borderRadius: '15px', 
+                    borderRadius: '15px',
                     width: '100%',
                   },
                 },
@@ -99,15 +103,17 @@ export const Header = () => {
               }}
             />
           </Box>
-          <Box sx={{ 
-            background: '#46A358',
-            borderRadius: '14px',
-            width: '50px',
-            height: '50px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-           }}>
+          <Box
+            sx={{
+              background: '#46A358',
+              borderRadius: '14px',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <Image
               src={burgerInside}
               width={30}
@@ -172,17 +178,30 @@ export const Header = () => {
             ))}
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-            <Box>
-              <Image src={search} width={20} height={20} alt={'search icon'} />
+            <Box sx={{ cursor: 'pointer' }} onClick={() => setSearch(!search)}>
+              <Image
+                src={searchImage}
+                width={20}
+                height={20}
+                alt={'search icon'}
+              />
             </Box>
-            <Box>
+            <Box
+              sx={{ cursor: 'pointer' }}
+              onClick={() => router.push('/home/shoppingcart')}
+            >
               <Badge badgeContent={6} color="success">
-                <ShoppingCartIcon sx={{ width: '29px', height: '24px' }} />
+                <ShoppingCartIcon />
               </Badge>
             </Box>
             <Box>
-              <CustomButton label="Login" leftIcon={<LogoutIcon />} />
+              <CustomButton
+                label="Login"
+                leftIcon={<LogoutIcon />}
+                onClick={() => setOpen(true)}
+              />
             </Box>
+            <Login open={open} setOpen={setOpen} />
           </Box>
         </>
       )}

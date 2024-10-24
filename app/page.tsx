@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="flex flex-col flex-1 basis-auto gap-8 row-start-2 items-center sm:items-start">
       Home page
-    </main>
+    </div>
   );
 }

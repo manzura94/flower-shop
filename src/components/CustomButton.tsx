@@ -3,8 +3,9 @@ import Button, { ButtonProps } from '@mui/material/Button';
 
 interface CustomButtonProps extends ButtonProps {
   label: string;
-  leftIcon?: React.ReactNode; 
-  rightIcon?: React.ReactNode; 
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  onClick: () => void;
 }
 
 const capitalizeFirstLetter = (text: string) => {
@@ -16,19 +17,27 @@ function CustomButton({
   label,
   leftIcon,
   rightIcon,
+  onClick,
   ...props
 }: CustomButtonProps) {
   return (
-    <Button 
-      {...props} 
-      startIcon={leftIcon} 
-      endIcon={rightIcon} 
+    <Button
+      {...props}
+      startIcon={leftIcon}
+      endIcon={rightIcon}
       variant="contained"
-      sx={{ textTransform: 'none', background: '#46A358', color:'white', fontWeight:500, padding:'8px 17px' }} 
+      onClick={onClick} 
+      sx={{
+        textTransform: 'none',
+        background: '#46A358',
+        color: 'white',
+        fontWeight: 500,
+        padding: '8px 17px',
+      }}
     >
-      {capitalizeFirstLetter(label)} 
+      {capitalizeFirstLetter(label)}
     </Button>
   );
-};
+}
 
 export default CustomButton;
